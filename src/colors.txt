@@ -1,0 +1,16 @@
+Noir profond (#0B0C10) – Pour représenter l’obscurité de l’espace.
+Bleu cosmos (#1B1F3B) – Inspiré des nébuleuses et du ciel nocturne.
+Violet nébuleuse (#5D3FD3) – Pour les nuages de gaz interstellaires.
+Bleu étoile (#4682B4) – Évoque l’éclat des jeunes étoiles.
+Argent lunaire (#C0C0C0) – Pour la surface de la Lune et les reflets métalliques des vaisseaux spatiaux.
+Orange solaire (#FF4500) – Inspiré du soleil et des étoiles en fusion.
+Rose galaxie (#FF1493) – Comme les magnifiques teintes des galaxies lointaines.
+
+
+    "montserrat-regular": require("@montserrat/regular.ttf"),
+    "roboto-regular": require("@roboto/regular.ttf"),
+    "roboto-condensed-regular": require("@robotoCondensed/regular.ttf"),
+    "roboto-condensed-italic": require("@robotoCondensed/italic.ttf"),
+    "roboto-mono-regular": require("@robotoMono/regular.ttf"),
+    "roboto-serif-regular": require("@robotoSerif/regular.ttf"),
+    "roboto-slab-regular": require("@robotoSlab/regular.ttf"),
