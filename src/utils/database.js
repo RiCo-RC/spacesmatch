@@ -1,90 +1,133 @@
+// Importation du module SQLite d'Expo
 import * as SQLite from "expo-sqlite";
 
-console.log(SQLite);
+const db = SQLite.openDatabaseSync("spacesmatch");
 
-const db = await SQLite.openDatabaseAsync("spacesmatch");
+export const databaseInit = async () => {
+  try {
+    await db.execAsync(`
+      CREATE TABLE IF NOT EXISTS users (
+        user_id INTEGER PRIMARY KEY AUTOINCREMENT,  
+        user_username TEXT UNIQUE NOT NULL,        
+        user_latest_play TEXT                       
+      );
+    `);
+    console.log("✅","'User' table created successfully!");
 
-// export const initDatabase = async () => {
-//   await db.execAsync(`
-//     CREATE TABLE IF NOT EXISTS user (
-//       user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-//       user_username TEXT UNIQUE NOT NULL,
-//       user_latest_play TEXT
-//     );
-//   `);
-//   await db.execAsync(`
-//     CREATE TABLE IF NOT EXISTS score (
-//       score_id INTEGER PRIMARY KEY AUTOINCREMENT,
-//       score_points INTEGER NOT NULL,
-//       score_registered_on TEXT DEFAULT (datetime('now')),
-//       user_id INTEGER,
-//       FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE
-//     );
-//   `);
-// };
+    await db.execAsync(`
+      CREATE TABLE IF NOT EXISTS scores (
+        score_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        score_points INTEGER NOT NULL,              
+        score_registered_on TEXT DEFAULT (datetime('now')), 
+        user_id INTEGER,                            
+        FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE
+      );
+    `);
+    console.log("✅","'Score' table successfully created!");
+    
+  } catch (error) {
+    console.log("❌","Error during database initialization:", error);
+  }
+};
 
-// export const addUser = async (username, latestPlay) => {
-//   try {
-//     await db.runAsync(
-//       `INSERT INTO user (user_username, user_latest_play) VALUES (?, ?);`,
-//       [username, latestPlay]
-//     );
-//   } catch (error) {
-//     console.error("❌ Error inserting user:", error);
-//   }
-// };
+export const addUser = async (username, latestPlay) => {
+  try {
+    await db.runAsync(
+      `INSERT INTO users (user_username, user_latest_play) VALUES (?, ?);`,
+      [username, latestPlay]
+    );
+    console.log("✅","User successfully added!");
+  } catch (error) {
+    console.log("❌","Error adding user:", error);
+  }
+};
 
-// export const addScore = async (points, userId) => {
-//   try {
-//     await db.runAsync(
-//       `INSERT INTO score (score_points, user_id) VALUES (?, ?);`,
-//       [points, userId]
-//     );
-//   } catch (error) {
-//     console.error("❌ Error inserting score:", error);
-//   }
-// };
+export const addScore = async (points, userId) => {
+  try {
+    await db.runAsync(
+      `INSERT INTO scores (score_points, user_id) VALUES (?, ?);`,
+      [points, userId]
+    );
+    console.log("✅","Score successfully added!");
+  } catch (error) {
+    console.log("❌","Error adding score:", error);
+  }
+};
 
-// export const getLeaderboard = async () => {
-//   try {
-//     return await db.getAllAsync(
-//       `SELECT u.user_username, MAX(s.score_points) AS bestScore 
-//        FROM score s
-//        JOIN user u ON s.user_id = u.user_id
-//        GROUP BY u.user_id
-//        ORDER BY bestScore DESC;`
-//     );
-//   } catch (error) {
-//     console.error("❌ Error fetching leaderboard:", error);
-//     return [];
-//   }
-// };
+export const getLeaderboard = async () => {
+  try {
+    const result = await db.getAllAsync(
+      `SELECT u.user_username, MAX(s.score_points) AS bestScore 
+       FROM scores s
+       INNER JOIN users u ON s.user_id = u.user_id
+       GROUP BY u.user_id
+       ORDER BY bestScore DESC;`
+    );
 
-// export const getUserScores = async (userId) => {
-//   try {
-//     return await db.getAllAsync(
-//       `SELECT * FROM score WHERE user_id = ? ORDER BY score_registered_on DESC;`,
-//       [userId]
-//     );
-//   } catch (error) {
-//     console.error("❌ Error fetching scores:", error);
-//     return [];
-//   }
-// };
+    return result || [];
+  } catch (error) {
+    console.log("❌","Error when retrieving classification:", error);
+    return [];
+  }
+};
 
-// export const getLatestScore = async (setLatestScore) => {
-//   try {
-//     const result = await db.getFirstAsync(
-//       `SELECT s.score_points, u.user_username, s.score_registered_on
-//        FROM score AS s
-//        INNER JOIN user AS u ON s.user_id = u.user_id
-//        ORDER BY s.score_registered_on DESC
-//        LIMIT 1;`
-//     );
-//     if (result) {
-//       setLatestScore(result);
-//     }
-//   } catch (error) {
-//     console.error("❌ Error fetching latest score:", error);
-//   }
-// };
+export const getUserScores = async (userId) => {
+  try {
+    const result = await db.getAllAsync(
+      `SELECT * FROM scores WHERE user_id = ? ORDER BY score_registered_on DESC;`,
+      [userId]
+    );
+    return result || [];
+  } catch (error) {
+    console.log("❌","Error retrieving user scores:", error);
+    return [];
+  }
+};
+
+export const getLatestScore = async () => {
+  try {
+    const result = await db.getFirstAsync(
+      `SELECT s.score_points, u.user_username, s.score_registered_on
+       FROM scores AS s
+       INNER JOIN users AS u ON s.user_id = u.user_id
+       ORDER BY s.score_registered_on DESC
+       LIMIT 1;`
+    );
+    return result || null;
+  } catch (error) {
+    console.log("❌","Error when retrieving the last score:", error);
+    return null;
+  }
+};
+
+export const getUser = async (username) => {
+  try {
+    const result = await db.getFirstAsync(
+      `SELECT * FROM users WHERE user_username = ?;`,
+      [username]
+    );
+    return result || null;
+  } catch (error) {
+    console.log("❌","Error when retrieving the user:", error)
+  };
+};
+
+export const updateUser = async (username, latestPlay) => {
+  try {
+    const user = await getUser(username); // Récupérer l'utilisateur existant
+    if (!user) {
+      console.log("❌","User not found:", username);
+      return;
+    }
+
+    // Mise à jour de la date de dernière partie
+    await db.runAsync(
+      `UPDATE user SET user_latest_play = ? WHERE user_username = ?;`,
+      [latestPlay, username]
+    );
+
+    console.log("✅","Last game updated for", username, ":", latestPlay);
+  } catch (error) {
+    console.log("❌","User update error:", error);
+  }
+};

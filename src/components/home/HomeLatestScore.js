@@ -6,35 +6,40 @@ import { getLatestScore } from "@database";
 
 import CustomButtonIcon from "../CustomButtonIcon";
 
-const HomeLatestScore = () => {
+const HomeLatestScore = ({ navigation }) => {
   const [latestScore, setLatestScore] = useState(null);
 
-  // useEffect(() => {
-    // const fetchLeatestScore = async () => {
-    //   const data = await getLatestScore(setLatestScore);
-    //   setLatestScore(data);
-    //   console.log("Fetching latest score...");
-    // };
-    // fetchLeatestScore();
-  // }, []);
+  useEffect(() => {
+    const fetchLatestScore = async () => {
+      try {
+        const data = await getLatestScore();
+        setLatestScore(data);
+        console.log("✅ Latest score fetched:", data);
+      } catch (error) {
+        console.log("❌ Error fetching latest score:", error);
+      }
+    };
+
+    fetchLatestScore();
+  }, []);
 
   return (
-    <View style={[styles.screenBase, styles.screenHomeLatestScore]}>
-      <Text style={styles.textHomeLatestScoreTitle}>Latest score:</Text>
+    <View style={[styles.viewBase, styles.homeScreenLatestScoreView]}>
+      <Text style={styles.homeScreenLatestScoreTitle}>Latest score:</Text>
       {latestScore ? (
         <>
-          <Text style={styles.textHomeLatestScoreResult}>
+          <Text style={styles.homeScreenLatestScorePoints}>
             {latestScore.score_points}
           </Text>
-          <Text style={styles.textHomeLatestScoreResult}>
+          <Text style={styles.homeScreenLatestScoreUsername}>
             {latestScore.user_username}
           </Text>
-          <Text style={styles.textHomeLatestScoreResult}>
+          <Text style={styles.homeScreenLatestScoreDateTime}>
             {latestScore.score_registered_on}
           </Text>
         </>
       ) : (
-        <Text style={styles.textHomeLatestScoreResult}>
+        <Text style={styles.homeScreenLatestScoreNoScore}>
           No scores available
         </Text>
       )}
@@ -44,8 +49,8 @@ const HomeLatestScore = () => {
         icon="trophy"
         iconSize={32}
         iconColor="#FF4500"
-        buttonStyle={styles.buttonHomeLatestScore}
-        onPress={null}
+        buttonStyle={styles.homeScreenLatestScoreButtonIconScore}
+        onPress={() => navigation.navigate("LeaderboardScreen")}
         disabled={false}
       />
     </View>

@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   SplashScreen,
   HomeScreen,
-  PlayScreen,
+  GameScreen,
   LeaderboardScreen,
   DetailsScreen,
 } from "../screens";
@@ -15,7 +15,7 @@ const screenOptions = { headerShown: false };
 const screens = [
   { name: "SplashScreen", component: SplashScreen },
   { name: "HomeScreen", component: HomeScreen },
-  { name: "PlayScreen", component: PlayScreen },
+  { name: "GameScreen", component: GameScreen },
   { name: "LeaderboardScreen", component: LeaderboardScreen },
   { name: "DetailsScreen", component: DetailsScreen },
 ];

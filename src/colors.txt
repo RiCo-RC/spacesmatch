@@ -6,11 +6,11 @@ Argent lunaire (#C0C0C0) – Pour la surface de la Lune et les reflets métalliq
 Orange solaire (#FF4500) – Inspiré du soleil et des étoiles en fusion.
 Rose galaxie (#FF1493) – Comme les magnifiques teintes des galaxies lointaines.
 
-
-    "montserrat-regular": require("@montserrat/regular.ttf"),
-    "roboto-regular": require("@roboto/regular.ttf"),
-    "roboto-condensed-regular": require("@robotoCondensed/regular.ttf"),
-    "roboto-condensed-italic": require("@robotoCondensed/italic.ttf"),
-    "roboto-mono-regular": require("@robotoMono/regular.ttf"),
-    "roboto-serif-regular": require("@robotoSerif/regular.ttf"),
-    "roboto-slab-regular": require("@robotoSlab/regular.ttf"),
+"#FFD700", // Jaune supernova – Explosion d’étoile
+"#00FFFF", // Bleu azur cosmique – Pour représenter les trous bleus profonds
+"#8A2BE2", // Indigo spatial – Évoque l’univers lointain
+"#FF6347", // Rouge météore – Inspiré des météorites en combustion
+"#7FFFD4", // Turquoise comète – Pour les comètes glacées
+"#DC143C", // Pourpre pulsar – Couleur des étoiles à neutrons ultra-denses
+"#00FF7F", // Vert néon alien – Rappelant les représentations de la vie extraterrestre
+"#FF69B4"  // Magenta cosmique – Inspiré des aurores boréales et des galaxies lointaines

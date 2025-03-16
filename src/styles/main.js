@@ -1,22 +1,15 @@
 import { StyleSheet } from "react-native";
 
-import { width, height } from "@utils";
+import { width, height, BOARD_CELL_SIZE } from "@utils";
 
 const mainStyles = StyleSheet.create({
-  //---- BACKGROUND COLOR ----\\
-  bgc_darkSpace: {
-    backgroundColor: "#0B0C10",
+  //---- GLOBAL: ICON\IMAGE ----\\
+  imageBase: {
+    height: "100%",
+    resizeMode: "contain",
+    width: "100%",
   },
-  bgc_interstellarGases: {
-    backgroundColor: "#5D3FD3",
-  },
-  bgc_lunarSilver: {
-    backgroundColor: "#C0C0C0",
-  },
-  bgc_solarOrange: {
-    backgroundColor: "#FF4500",
-  },
-  //---- BUTTON ----\\
+  //---- GLOBAL: BUTTON ----\\
   buttonBase: {
     alignItems: "center",
     borderRadius: 8,
@@ -38,10 +31,215 @@ const mainStyles = StyleSheet.create({
     borderWidth: 2,
   },
   buttonTertiary: {},
-  buttonTextHomeReady: {
-    color: "#fff",
+  errorTextBase: {},
+  //---- GLOBAL: ERROR ----\\
+  errorTextBase: {},
+  //---- GLOBAL: MODAL ----\\
+  modalViewBase: {
+    alignItems: "center",
+    height: height * 1,
+    justifyContent: "center",
+    width: width * 1,
+    backgroundColor: "rgba(27, 31, 59, 0.95)",
   },
-  buttonHomeLatestScore: {
+  modalViewContent: {
+    alignItems: "center",
+    gap: 15,
+    height: "100%",
+    justifyContent: "center",
+    width: "100%",
+  },
+  modalViewHalfContent: {
+    height: "50%",
+    width: "50%",
+  },
+  modalTitle: {
+    fontSize: 22,
+    color: "white",
+  },
+  modalInput: {
+    borderBottomStyle: "solid",
+    borderBottomWidth: 2,
+    borderColor: "#5D3FD3",
+    borderRadius: 15,
+    color: "#4682B4",
+    width: "95%",
+  },
+  modalInputPlaceholderTextColor: "rgba(255,255,255,0.75)",
+  modalErrorText: {
+    color: "#FF1493",
+  },
+  modalButtonBase: {
+    width: "95%",
+  },
+  modalButtonText: {
+    color: "white",
+  },
+  //---- GLOBAL: SCREEN ----\\
+  viewBase: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  viewFull: {
+    flex: 1,
+    gap: 10,
+    height: "100%",
+    width: "100%",
+  },
+  //---- COMPONENT: PROGRESS BAR ----\\
+  progressBarView: {
+    gap: 10,
+    height: 40,
+    marginVertical: 10,
+    maxWidth: width * 0.95,
+    width: width * 0.9,
+  },
+  progressBarViewAnimated: {
+    backgroundColor: "#5D3FD3",
+    height: 20,
+    maxWidth: width * 0.95,
+    width: "0%",
+  },
+  progressBarTextValue: {
+    color: "#C0C0C0",
+    fontFamily: "montserrat-regular",
+    fontSize: 14,
+  },
+  //---- SCREEN: GAME ----\\
+  gameScreenView: {
+    backgroundColor: "#0B0C10",
+    justifyContent: "space-around",
+  },
+  gameScreenHeaderView: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    height: height * 0.2,
+    paddingHorizontal: 2,
+    width: "100%",
+  },
+  gameScreenContentView: {
+    height: height * 0.6,
+    width: width * 1,
+  },
+  gameScreenActionView: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    height: height * 0.2,
+    width: width * 1,
+  },
+  gameScreenBoardView: {
+    backgroundColor: "rgba(27, 31, 59, 0.25)",
+    height: "100%",
+    width: "100%",
+  },
+  gameScreenBoardView: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: width * 0.95,
+  },
+  gameScreenBoardCellView: {
+    alignItems: "center",
+    backgroundColor: "#f8f8f8",
+    borderColor: "#ccc",
+    borderWidth: 1,
+    justifyContent: "center",
+    height: BOARD_CELL_SIZE,
+    margin: 1.5,
+    width: BOARD_CELL_SIZE,
+  },
+  noView: {},
+  //-- header:
+  gameScreenHeaderTextScore: {
+    color: "white",
+    fontSize: 15,
+  },
+  gameScreenHeaderTextLevel: {
+    color: "white",
+    fontSize: 15,
+  },
+  gameScreenHeaderTextLife: {
+    color: "white",
+    fontSize: 15,
+  },
+  noView: {},
+  //-- content/board:
+  gameScreenTextBoardCell: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  noView: {},
+  //---- SCREEN: HOME ----\\
+  homeScreenView: {
+    backgroundColor: "#0B0C10",
+    justifyContent: "space-around",
+  },
+  homeScreenHeaderView: {
+    height: height * 0.2,
+    paddingHorizontal: 2,
+    width: "100%",
+  },
+  homeScreenContentView: {
+    justifyContent: "space-around",
+    height: height * 0.6,
+    width: width * 1,
+  },
+  homeScreenLatestScoreView: {
+    backgroundColor: "#1B1F3B",
+    borderColor: "#5D3FD3",
+    borderRadius: 15,
+    borderWidth: 1,
+    flexDirection: "column",
+    gap: 5,
+    height: height * 0.2,
+    paddinhg: 20,
+    position: "relative",
+    width: width * 0.85,
+  },
+  homeScreenActionView: {
+    height: height * 0.2,
+    width: width * 1,
+  },
+  homeScreenModalViewHalfContent: {
+    height: height * 0.85,
+    width: width * 0.85,
+  },
+  //-- header:
+  homeScreenHeaderTitle: {
+    color: "white",
+    fontFamily: "roboto-regular",
+    fontSize: 35,
+  },
+  homeScreenHeaderVersion: {
+    color: "white",
+    fontFamily: "roboto-regular",
+    fontSize: 20,
+  },
+  //-- content/score:
+  homeScreenLatestScoreTitle: {
+    color: "white",
+    fontFamily: "roboto-regular",
+    fontSize: 22,
+  },
+  homeScreenLatestScorePoints: {
+    color: "white",
+    fontSize: 15,
+  },
+  homeScreenLatestScoreUsername: {
+    color: "white",
+    fontSize: 15,
+  },
+  homeScreenLatestScoreDateTime: {
+    color: "white",
+    fontSize: 15,
+  },
+  homeScreenLatestScoreNoScore: {
+    color: "white",
+    fontSize: 15,
+  },
+  homeScreenLatestScoreButtonIconScore: {
     backgroundColor: "#C0C0C0",
     borderRadius: 25,
     elevation: 5,
@@ -53,160 +251,81 @@ const mainStyles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    width: 'auto',
+    width: "auto",
   },
-  buttonLeaderboard: {
+  //-- action:
+  homeScreenButtonReady: {
+    color: "#fff",
+  },
+  //---- SCREEN: LEADERBOARD ----\\
+  leaderboardScreenView: {
+    backgroundColor: "#0B0C10",
+    justifyContent: "space-around",
+  },
+  leaderboardScreenHeaderView: {
+    height: height * 0.2,
+    width: width * 1,
+  },
+  leaderboardScreenContentView: {
+    justifyContent: "space-around",
+    height: height * 0.6,
+    width: width * 1,
+  },
+  leaderboardScreenActionView: {
+    height: height * 0.2,
+    width: width * 1,
+  },
+  //-- header:
+  leaderboardScreenHeaderTitle: {
+    color: "white",
+    fontSize: 24,
+    fontFamily: "roboto-regular",
+    fontWeight: "bold",
+  },
+  //-- content:
+  leaderboardScreenButtonRow: {
     justifyContent: "space-between",
     padding: 10,
     width: width * 0.95,
   },
-  //---- FONT COLOR ----\\
-  fc_darkSpace: {
-    color: "#0B0C10",
-  },
-  fc_interstellarGases: {
-    color: "#5D3FD3",
-  },
-  fc_lunarSilver: {
-    color: "#C0C0C0",
-  },
-  fc_solarOrange: {
-    color: "#FF4500",
-  },
-  //---- FONT SIZE ----\\
-  fs_14: {
-    fontSize: 14,
-  },
-  fs_16: {
-    fontSize: 16,
-  },
-  fs_18: {
-    fontSize: 18,
-  },
-  fs_20: {
-    fontSize: 20,
-  },
-  fs_35: {
-    fontSize: 35,
-  },
-  //---- FONT STYLE ----\\
-  fs_italic: {
-    fontStyle: "italic",
-  },
-  //---- IMAGE ----\\
-  imageBase: {
-    height: "100%",
-    resizeMode: "contain",
-    width: "100%",
-  },
-  imageLogo: {
-    height: height * 0.25,
-    width: width * 0.9,
-  },
-  //---- SCREEN ----\\
-  screenBase: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  screenFull: {
-    flex: 1,
-    gap: 10,
-    height: "100%",
-    width: "100%",
-  },
-  screenHomeHeader: {
-    height: height * 0.2,
-    paddingHorizontal: 2,
-    width: "100%",
-  },
-  screenProgressBar: {
-    gap: 10,
-    height: 40,
-    marginVertical: 10,
-    maxWidth: width * 0.95,
-    width: width * 0.9,
-  },
-  screenProgressBarAnimated: {
-    height: 20,
-    maxWidth: width * 0.95,
-    width: "0%",
-  },
-  screenHome: {
-    justifyContent: "space-around",
-  },
-  screenHomeLatestScore: {
-    backgroundColor: "#1B1F3B", //
-    borderColor: "#5D3FD3", //
-    borderRadius: 15,
-    borderWidth: 1,
-    flexDirection: "column",
-    gap: 5,
-    height: height * 0.2,
-    paddinhg: 20,
-    position: "relative",
-    width: width * 0.85,
-  },
-  screenLeaderboard: {
-    justifyContent: "space-around",
-  },
-  screenLeaderboardHeader: {},
-  screenLeaderboardContent: {},
-  //---- TEXT ----\\
-  textLoading: {
-    color: "#FF4500",
-    fontFamily: "roboto-regular",
-    fontSize: 18,
-    fontStyle: "italic",
-  },
-  TextprogressBar: {
-    color: "#FF4500",
-    fontFamily: "montserrat-regular",
-    fontSize: 14,
-  },
-  textHomeName: {
+  leaderboardScreenTextRank: {
     color: "white",
-    fontFamily: "roboto-regular",
-    fontSize: 35,
-  },
-  textHomeVersion: {
-    color: "white",
-    fontFamily: "roboto-regular",
-    fontSize: 20,
-  },
-  textHomeLatestScoreTitle: {
-    color: "white",
-    fontFamily: "roboto-regular",
-    fontSize: 22,
-  },
-  textHomeLatestScoreResult: {
-    color: "white",    
-    fontSize: 15,
-  },
-  textHomeLatestScoreResult: {
-    color: "white",    
-    fontSize: 15,
-  },
-  textHomeLatestScoreResult: {
-    color: "white",    
-    fontSize: 15,
-  },
-  textLeaderboardTitle: {
-    fontSize: 24, 
-    fontFamily: "roboto-regular",
-    fontWeight: "bold",
-  },
-  textLeaderboardRank: {
     fontSize: 18,
     fontWeight: "bold",
     width: 30,
   },
-  textLeaderboardUser: {
+  leaderboardScreenTextUser: {
+    color: "white",
     flex: 1,
     fontSize: 18,
   },
-  textLeaderboardScore: {
+  leaderboardScreenTextScore: {
+    color: "white",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  leaderboardScreenTextScoreNoScore: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  //-- action:
+  leaderboardScreenButtonBack: {
+    color: "#fff",
+  },
+  //---- SCREEN: SPLASH ----\\
+  splashScreenView: {
+    backgroundColor: "#0B0C10",
+  },
+  splashScreenIconLoading: {
+    height: height * 0.25,
+    width: width * 0.9,
+  },
+  splashScreenTextLoading: {
+    color: "#FF4500",
+    fontFamily: "roboto-regular",
+    fontSize: 18,
+    fontStyle: "italic",
   },
   //---- ----\\
 });

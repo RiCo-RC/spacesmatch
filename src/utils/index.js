@@ -1,3 +1,24 @@
-export { checkAuthentification } from "./authentification";
-export { width, height, VERSION, LEADERBOARD_MAX } from "./variables";
-export { initDatabase, addUser, addScore, getLeaderboard, getUserScores, getLatestScore } from "./database";
+export {
+  width,
+  height,
+  VERSION,
+  LEADERBOARD_MAX,
+  BOARD_GRID_SIZE,
+  BOARD_CELL_SIZE,
+  BOARD_ELEMENTS,
+  BOARD_SIZE,
+  BOARD_INVALID_INDICES,
+} from "./variables";
+export {
+  databaseInit,
+  addUser,
+  addScore,
+  getLeaderboard,
+  getUserScores,
+  getLatestScore,
+} from "./database";
+
+
+export { getUserData, setUserData} from "./storage/user";
+export { loadGameData, saveGameData } from "./storage/game";
+

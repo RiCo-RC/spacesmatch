@@ -12,7 +12,7 @@ const CustomButtonText = ({
 }) => {
   return (
     <CustomButton type={type} style={[buttonStyle]} onPress={onPress} disabled={disabled}>
-      <Text style={textStyle}>{text}</Text>
+      <Text style={[textStyle]}>{text || "Texte manquant"}</Text>
     </CustomButton>
   )
 };

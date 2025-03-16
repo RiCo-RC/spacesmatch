@@ -24,11 +24,10 @@ const ProgressBar = () => {
   }, [progress]);
 
   return (
-    <View style={[styles.screenBase, styles.screenProgressBar]}>
+    <View style={[styles.viewBase, styles.progressBarView]}>
       <Animated.View
         style={[
-          styles.screenProgressBarAnimated,
-          styles.bgc_interstellarGases,
+          styles.progressBarViewAnimated,
           {
             width: progress.interpolate({
               inputRange: [0, 1],
@@ -37,7 +36,7 @@ const ProgressBar = () => {
           },
         ]}
       ></Animated.View>
-      <Text style={[styles.TextprogressBar]}>
+      <Text style={[styles.progressBarTextValue]}>
         {percentage}%
       </Text>
     </View>
