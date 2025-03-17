@@ -3,8 +3,23 @@ import { View } from "react-native";
 import styles from "@styles/main";
 
 import { CustomButtonIcon } from "@components";
+import { generateBoard } from "@scripts";
 
-const GameAction = ({ navigation }) => {
+const GameAction = ({
+  board,
+  setBoard,
+  isModalFormVisible,
+  setModalFormVisible,
+}) => {
+  const generateNewBoard = async () => {
+    const newBoard = await generateBoard();
+    setBoard(newBoard);
+  };
+
+  const handlePause = async () => {
+    setModalFormVisible(true);
+  };
+
   return (
     <View style={[styles.viewBase, styles.gameScreenActionView]}>
       <CustomButtonIcon
@@ -14,7 +29,7 @@ const GameAction = ({ navigation }) => {
         iconSize={22}
         iconColor="white"
         buttonStyle={{ width: "auto" }}
-        onPress={null}
+        onPress={generateNewBoard}
       />
       <CustomButtonIcon
         type="primary"
@@ -23,7 +38,7 @@ const GameAction = ({ navigation }) => {
         iconSize={22}
         iconColor="white"
         buttonStyle={{ width: "auto" }}
-        onPress={null}
+        onPress={handlePause}
       />
       <CustomButtonIcon
         type="primary"

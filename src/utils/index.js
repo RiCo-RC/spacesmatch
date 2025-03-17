@@ -8,6 +8,7 @@ export {
   BOARD_ELEMENTS,
   BOARD_SIZE,
   BOARD_INVALID_INDICES,
+  BOARD_TEST,
 } from "./variables";
 export {
   databaseInit,

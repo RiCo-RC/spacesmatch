@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import styles from "@styles/main";
 import { generateBoard } from "@scripts";
-import { GameHeader, GameContent, GameAction } from "@components";
+import { GameHeader, GameContent, GameAction, GameModal } from "@components";
 
 const GameScreen = ({ user }) => {
   const navigation = useNavigation();
@@ -14,76 +14,12 @@ const GameScreen = ({ user }) => {
   const [lifeLeft, setLifeLeft] = useState(3);
   const [progress, setProgress] = useState(50);
   const [progressThreshold, setProgressThreshold] = useState(100);
+  const [isModalFormVisible, setModalFormVisible] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchBoard = async () => {
       const newBoard = await generateBoard();
-      // const test = [
-      //   "blue",
-      //   "red",
-      //   "red",
-      //   "blue",
-      //   "yellow",
-      //   "red",
-      //   "green",
-      //   "cyan",
-      //   "blue",
-      //   "blue",
-      //   "orange",
-      //   "blue",
-      //   "pink",
-      //   "yellow",
-      //   "blue",
-      //   "red",
-      //   "yellow",
-      //   "orange",
-      //   "yellow",
-      //   "purple",
-      //   "cyan",
-      //   "red",
-      //   "yellow",
-      //   "blue",
-      //   "purple",
-      //   "blue",
-      //   "orange",
-      //   "red",
-      //   "blue",
-      //   "green",
-      //   "yellow",
-      //   "blue",
-      //   "cyan",
-      //   "purple",
-      //   "blue",
-      //   "red",
-      //   "orange",
-      //   "yellow",
-      //   "orange",
-      //   "pink",
-      //   "blue",
-      //   "green",
-      //   "red",
-      //   "cyan",
-      //   "blue",
-      //   "purple",
-      //   "yellow",
-      //   "orange",
-      //   "blue",
-      //   "pink",
-      //   "red",
-      //   "yellow",
-      //   "blue",
-      //   "blue",
-      //   "green",
-      //   "purple",
-      //   "red",
-      //   "cyan",
-      //   "orange",
-      //   "red",
-      //   "yellow",
-      //   "blue",
-      //   "pink",
-      //   "blue",
-      // ];
       setBoard(newBoard);
     };
     fetchBoard();
@@ -148,6 +84,13 @@ const GameScreen = ({ user }) => {
     console.log("newprogressthreshold", progressThreshold);
   };
 
+  const handleResume = () => {
+    console.log("ok");
+  };
+  const handleGiveUp = () => {
+    console.log("ok");
+  };
+
   return (
     <View style={[styles.viewBase, styles.viewFull, styles.gameScreenView]}>
       <GameHeader
@@ -161,10 +104,18 @@ const GameScreen = ({ user }) => {
         setBoard={setBoard}
         calculateScore={calculateScore}
       />
-      {/* GameAction est à finir - voir HomeAction */}
-      <GameAction /> 
-      {/* GameModal est à fair - voir HomeScreen */}
-      {/* <GameModal /> */}
+      <GameAction
+        board={board}
+        setBoard={setBoard}
+        isModalFormVisible={isModalFormVisible}
+        setModalFormVisible={setModalFormVisible}
+      />
+      <GameModal
+        isModalFormVisible={isModalFormVisible}
+        isLoading={isLoading}
+        handleResume={handleResume}
+        handleGiveUp={handleGiveUp}
+      />
     </View>
   );
 };

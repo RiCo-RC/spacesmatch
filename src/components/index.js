@@ -9,7 +9,8 @@ export { default as ProgressBar } from "./ProgressBar";
 export { default as GameAction } from "./Game/GameAction";
 export { default as GameBoard } from "./Game/GameBoard";
 export { default as GameContent } from "./Game/GameContent";
-export { default as GameHeader } from "./Game/GameHeader";
+export { default as GameModal } from "./Game/GameModal";
+export { default as GameTile } from "./Game/GameTile";
 
 export { default as HomeAction } from "./Home/HomeAction";
 export { default as HomeContent } from "./Home/HomeContent";
