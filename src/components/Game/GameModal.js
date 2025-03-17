@@ -1,4 +1,4 @@
-import { View, Text, Modal, TextInput } from "react-native";
+import { View, Text, Modal } from "react-native";
 
 import styles from "@styles/main";
 
@@ -12,7 +12,7 @@ const GameModal = ({
 }) => {
 
   return (
-    <Modal visible={isModalFormVisible} animationType="slide" transparent>
+    <Modal visible={isModalFormVisible} animationType="slide">
       <View style={styles.modalViewBase}>
         <View
           style={[

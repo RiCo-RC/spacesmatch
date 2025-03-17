@@ -34,11 +34,11 @@ const GameBoard = ({
           currentBoard[selectedTileOne],
         ];
 
-        // Mise à jour du plateau après un match :
+        // Update the set after a match:
         let { newBoard, matches } = getUpdatedBoardAfterMatch(currentBoard);
         setBoard(newBoard);
 
-        // Mise à jour du score si un match est trouvé :
+        // Score updated if a match is found:
         if (matches.length > 0) {
           console.log("calculatescore");
           calculateScore(matches);
@@ -55,7 +55,6 @@ const GameBoard = ({
       {board.map((color, index) => (
         <GameTile
           key={index}
-          index={index}
           color={color}
           onPress={() => handleTilePress(index)}
         />

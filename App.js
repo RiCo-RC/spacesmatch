@@ -5,15 +5,20 @@ import { ThemeProvider } from "@context/ThemeProvider";
 
 import StackNavigator from "@navigation/StackNavigator";
 
+import { SQLiteProvider } from "expo-sqlite";
+import { migrateDbIfNeeded } from "@utils";
+
 const App = () => {
   return (
     <SafeAreaProvider>
       <StatusBar hidden={true} />
-      <ThemeProvider>
-        <NavigationContainer>
-          <StackNavigator />
-        </NavigationContainer>
-      </ThemeProvider>
+      <SQLiteProvider databaseName="spacesmatch.db" onInit={migrateDbIfNeeded}>
+        <ThemeProvider>
+          <NavigationContainer>
+            <StackNavigator />
+          </NavigationContainer>
+        </ThemeProvider>
+      </SQLiteProvider>
     </SafeAreaProvider>
   );
 };

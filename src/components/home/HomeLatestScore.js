@@ -14,9 +14,9 @@ const HomeLatestScore = ({ navigation }) => {
       try {
         const data = await getLatestScore();
         setLatestScore(data);
-        console.log("✅ Latest score fetched:", data);
+        console.log("✅","Latest score fetched:", data);
       } catch (error) {
-        console.log("❌ Error fetching latest score:", error);
+        console.log("❌","Error fetching latest score:", error);
       }
     };
 

@@ -6,13 +6,21 @@ import { CustomButtonIcon } from "@components";
 import { generateBoard } from "@scripts";
 
 const GameAction = ({
-  board,
   setBoard,
-  isModalFormVisible,
   setModalFormVisible,
+  setScore,
+  setLevel,
+  setLifeLeft,
+  setProgress,
+  setProgressThreshold,
 }) => {
   const generateNewBoard = async () => {
     const newBoard = await generateBoard();
+    setScore(0);
+    setLevel(1);
+    setLifeLeft(3);
+    setProgress(50);
+    setProgressThreshold(100);
     setBoard(newBoard);
   };
 

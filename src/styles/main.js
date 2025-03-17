@@ -141,15 +141,20 @@ const mainStyles = StyleSheet.create({
   },
   gameScreenBoardCellView: {
     alignItems: "center",
-    backgroundColor: "#f8f8f8",
-    borderColor: "#ccc",
-    borderWidth: 1,
-    justifyContent: "center",
+    borderRadius: 10,
+    elevation: 5,
     height: BOARD_CELL_SIZE,
-    margin: 1.5,
+    justifyContent: "center",
+    margin: 2,
+    shadowColor: "#fff",
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowOpacity: 0.75,
+    shadowRadius: 3.84,
     width: BOARD_CELL_SIZE,
   },
-  noView: {},
   //-- header:
   gameScreenHeaderTextScore: {
     color: "white",
@@ -163,14 +168,12 @@ const mainStyles = StyleSheet.create({
     color: "white",
     fontSize: 15,
   },
-  noView: {},
   //-- content/board:
   gameScreenTextBoardCell: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#333",
   },
-  noView: {},
   //---- SCREEN: HOME ----\\
   homeScreenView: {
     backgroundColor: "#0B0C10",

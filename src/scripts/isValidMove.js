@@ -15,11 +15,11 @@ const isValidMove = (tileOne, tileTwo, boardCurrent) => {
     tileTwo === tileOne - boardSize; // Top
 
   if (!areAdjacent) {
-    console.log("❌ Tiles are NOT adjacent!");
+    console.log("❌", "Tiles are NOT adjacent!");
     return false;
   }
 
-  console.log("✅ Tiles are adjacent:", tileOne, "and", tileTwo);
+  console.log("✅","Tiles are adjacent:", tileOne, "and", tileTwo);
 
   [board[tileOne], board[tileTwo]] = [board[tileTwo], board[tileOne]];
 

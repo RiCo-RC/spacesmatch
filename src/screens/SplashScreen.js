@@ -3,9 +3,9 @@ import { View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import styles from "@styles/main";
-import { getUserData, databaseInit } from "@utils";
+// import { getUserData, databaseInit } from "@utils";
+import { getUserData } from "@utils";
 import { CustomIcon, ProgressBar } from "@components";
-
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -21,9 +21,9 @@ const SplashScreen = () => {
     fetchedUserData();
   }, [navigation]);
 
-  useEffect(() => {
-    databaseInit();
-  });
+  // useEffect(() => {
+  //   databaseInit();
+  // });
 
   return (
     <View style={[styles.viewBase, styles.viewFull, styles.splashScreenView]}>

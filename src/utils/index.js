@@ -11,7 +11,7 @@ export {
   BOARD_TEST,
 } from "./variables";
 export {
-  databaseInit,
+  migrateDbIfNeeded,
   addUser,
   addScore,
   getLeaderboard,

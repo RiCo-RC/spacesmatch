@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 import styles from "@styles/main";
 

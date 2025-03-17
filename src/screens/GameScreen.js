@@ -85,10 +85,11 @@ const GameScreen = ({ user }) => {
   };
 
   const handleResume = () => {
-    console.log("ok");
+    setModalFormVisible(false);
   };
   const handleGiveUp = () => {
-    console.log("ok");
+    setModalFormVisible(false);
+    navigation.navigate("HomeScreen");
   };
 
   return (
@@ -109,6 +110,11 @@ const GameScreen = ({ user }) => {
         setBoard={setBoard}
         isModalFormVisible={isModalFormVisible}
         setModalFormVisible={setModalFormVisible}
+        setScore={setScore}
+        setLevel={setLevel}
+        setLifeLeft={setLifeLeft}
+        setProgress={setProgress}
+        setProgressThreshold={setProgressThreshold}
       />
       <GameModal
         isModalFormVisible={isModalFormVisible}

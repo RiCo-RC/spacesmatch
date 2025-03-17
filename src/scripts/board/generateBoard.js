@@ -29,7 +29,7 @@ export const getUpdatedBoardAfterMatch = (board) => {
   let hasMatch = false;
   let matches = [];
 
-  // Marquer les tuiles à supprimer
+  // Mark tiles to be deleted
   for (let i = 0; i < newBoard.length; i++) {
     if (isMatchAtIndex2(newBoard, i, BOARD_GRID_SIZE)) {
       matches.push({ index: i, color: newBoard[i] });
@@ -39,20 +39,20 @@ export const getUpdatedBoardAfterMatch = (board) => {
 
   if (!hasMatch) return { newBoard, matches: [] };
 
-  console.log("🎯 Match trouvé, suppression des tuiles...");
+  console.log(">>","Match found, tiles removed...");
   matches.forEach(({ index, color }) =>
-    console.log(`🟢 Index ${index}, Couleur ${color}`)
+    console.log(`">>","Index ${index}, Couleur ${color}`)
   );
 
-  // Suppression des tuiles marquées (mise à null)
+  // Deletion of marked tiles (set to null)
   matches.forEach(({ index }) => (newBoard[index] = null));
 
-  console.log("🔽 État du plateau après suppression :");
+  console.log(">>","Tray status after removal:");
   newBoard.forEach((color, index) =>
-    console.log(`Index: ${index}, Couleur: ${color !== null ? color : "❌ (null)"}`)
+    console.log(`Index: ${index}, Color: ${color !== null ? color : "❌, (null)"}`)
   );
 
-  // Déplacement des tuiles vers le bas jusqu'à stabilisation
+  // Move tiles down until stabilized
   let hasFallingTiles = true;
   while (hasFallingTiles) {
     hasFallingTiles = false;
@@ -68,9 +68,9 @@ export const getUpdatedBoardAfterMatch = (board) => {
     }
   }
 
-  console.log("✅ Plateau stabilisé après descente des tuiles :");
+  console.log(">>","Stabilized plateau after lowering the tiles:");
   newBoard.forEach((color, index) =>
-    console.log(`Index: ${index}, Couleur: ${color !== null ? color : "❌ (null)"}`)
+    console.log(`Index: ${index}, Color: ${color !== null ? color : "❌, (null)"}`)
   );
 
   // Remplissage des cases vides avec de nouvelles couleurs
@@ -80,9 +80,9 @@ export const getUpdatedBoardAfterMatch = (board) => {
     }
   }
 
-  console.log("🎨 Plateau après remplissage des cases vides :");
+  console.log(">>","Tray after filling empty squares:");
   newBoard.forEach((color, index) =>
-    console.log(`Index: ${index}, Couleur: ${color}`)
+    console.log(`Index: ${index}, Color: ${color}`)
   );
 
   return { newBoard, matches };
